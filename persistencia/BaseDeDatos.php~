@@ -1,0 +1,108 @@
+<?php
+require_once 'configuracion.php';
+require_once PER . DIRECTORY_SEPARATOR . 'ManejadorBaseDeDatosInterface.php';
+require_once PER . DIRECTORY_SEPARATOR . 'Sql.php';
+
+class BaseDeDatos
+{
+    private $_manejador;
+
+    public function __construct(ManejadorBaseDeDatosInterface $manejador)
+    {
+        $this->_manejador = $manejador;
+    }
+    
+    public function ejecutar(Sql $sql)
+    {
+
+        $this->_manejador->conectar();
+        
+        $datos = $this->_manejador->traerDatos($sql);
+
+        $this->_manejador->desconectar();
+
+        return $datos;
+    }
+    
+    public function consultarModulo(sql $sql)
+    {
+        //echo $sql;
+        //break;
+        $this->_manejador->conectar();
+        
+        $datos = $this->_manejador->consultarModulo($sql);
+
+        $this->_manejador->desconectar();
+
+        return $datos;
+    }
+    
+    public function autenticarUsuario(Sql $sql)
+    {
+        $this->_manejador->conectar();
+        
+        $autenticar= $this->_manejador->autenticarUsuario($sql);
+        
+        $this->_manejador->desconectar();
+        
+        return $autenticar;
+    }    
+
+    public function listarUsuarios(Sql $sql)
+    {
+        $this->_manejador->conectar();
+        
+        $autenticar= $this->_manejador->listarUsuarios($sql);
+        
+        $this->_manejador->desconectar();
+        
+        return $autenticar;
+    }  
+    
+    
+    
+    public function guardarUsuario($sql)
+    {
+        $this->_manejador->conectar();
+        
+        $guardar= $this->_manejador->guardarUsuario($sql);
+        
+        $this->_manejador->desconectar();
+        
+        return $guardar;
+    }
+    
+    public function modificarUsuario(Sql $sql)
+    {
+        $this->_manejador->conectar();
+        
+        $modificar= $this->_manejador->modificarUsuario($sql);
+        
+        $this->_manejador->desconectar();
+        
+        return $modificar;
+    }
+    public function eliminarUsuario(Sql $sql)
+    {
+        $this->_manejador->conectar();
+        
+        $eliminar= $this->_manejador->eliminarUsuario($sql);
+        
+        $this->_manejador->desconectar();
+        
+        return $eliminar;
+    }
+    
+    public function consultarPerfiles(Sql $sql)
+    {
+        $this->_manejador->conectar();
+        
+        $eliminar= $this->_manejador->consultarPerfiles($sql);
+        
+        $this->_manejador->desconectar();
+        
+        return $eliminar;
+        
+    }
+                
+}

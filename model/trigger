@@ -1,0 +1,6 @@
+DELIMITER $$
+create trigger guardarUsuario before insert on sge_usuarios 
+FOR EACH ROW BEGIN
+insert into sge_auditoria(detalle)values(now());
+END
+$$

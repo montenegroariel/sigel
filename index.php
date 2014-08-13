@@ -12,12 +12,11 @@
 session_start();
 require_once 'configuracion.php';
 require_once PRE . DIRECTORY_SEPARATOR . 'PanelPresentacion.php';
-
     if (!isset($_SESSION["perfil"])){
         header("Location:login.php?modulo=login");
         exit;
     }
-    $id_perfil = $_SESSION['perfil'];
+    $id_perfil = $_SESSION['perfil'];    
 ?>
 <html>
 <head>

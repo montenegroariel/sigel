@@ -1,2 +1,3 @@
 persistencia/MySQL.php
 *.php~
+nbproject/

@@ -53,9 +53,8 @@ require_once PRE . DIRECTORY_SEPARATOR . 'UsuarioPresentacion.php';
                 case 'acceso':
                 //echo $_POST['user'] . " " . $_POST['pass'];
                     $result = UsuarioPresentacion::autenticarUsuario($_POST['user'], $_POST['pass']);
-                    if (mysqli_num_rows($result) > 0){                
-                        $user = $result->fetch_assoc();                
-                        $_SESSION['perfil'] = $user['id_perfil']; //sesion de usuario                 
+                    if (count($result[0])){
+                        $_SESSION['perfil'] = $result[0]['id_perfil']; //sesion de usuario                 
                         header("Location:index.php?modulo=1");
                     }
                     else{

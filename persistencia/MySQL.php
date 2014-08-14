@@ -13,25 +13,24 @@ class MySQL implements ManejadorBaseDeDatosInterface
 
     public function conectar()
     {
-        $this->_conexion = new PDO('mysql:
-            host='. self::SERVIDOR .
-            ';dbname='. self::BASE,
-            self::USUARIO,
-            self::CLAVE
-        );
+        $this->_conexion = new mysqli(        
+        self::SERVIDOR, 
+        self::USARIO, 
+        self::CLAVE, 
+        self::BASE);
     }
 
     public function desconectar()
     {
-        $this->_conexion = null;
+        $this->_conexion->disconect;
     }
     
     public function consultar(SQL $sql)
     {
         $todo = array();
-        $resultado = $this->_conexion->query($sql->consultar());
+        $resultado = mysqli_query($this->_conexion, $sql->consultar);
         //var_dump($resultado);
-        while ($fila = $resultado->fetch()){
+        while ($fila = $resultado->fetch_assoc()){
             $todo[] = $fila;
         }
         return $todo;

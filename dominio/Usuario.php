@@ -90,8 +90,8 @@ class Usuario extends Persona
     {
        $usuarioPersistencia = new UsuarioPersistencia();
        $datos = $usuarioPersistencia->autenticarUsuario($user, $pass);
-       //var_dump($datos);
-       //break;
+//       var_dump($datos);
+//       break;
        return $datos;
     }
     

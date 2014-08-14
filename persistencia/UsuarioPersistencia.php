@@ -11,18 +11,31 @@ class UsuarioPersistencia
     private $_id;
     public function getAll()
     {
-        /* Usa las clases de persistencia y retornara 
-        * solo datos extraidos de la base de datos, 
-        * la clase de dominio se encargará de armar los 
-        * objetos y entregarlos a la capa de 
-        * presentacion*/
+//        $bd = new BaseDeDatos(new MySQL());
+//        $sql = new Sql();
+//        $sql->addFuncion('SELECT');
+//        $sql->addTable('sge_usuarios join sge_personas on sge_usuarios.id_persona = sge_personas.id'); 
+//        $resultado_arr = $bd->consultar($sql);
+//        return $resultado_arr;
+//        
+        //select sge_usuarios.*, 
+        //sge_personas.nombre from sge_usuarios 
+        //join sge_personas 
+        //on sge_usuarios.id_persona = sge_personas.id
+        
         $bd = new BaseDeDatos(new MySQL());
         $sql = new Sql();
         $sql->addFuncion('SELECT');
-        $sql->addTable('sge_usuarios join sge_personas on sge_usuarios.id_persona = sge_personas.id'); 
-        $resultado_arr = $bd->consultar($sql);
+//        $sql->addFuncion('SELECT');
+//        $sql->addTable('sge_usuarios join sge_personas on sge_usuarios.id_persona = sge_personas.id'); 
+//        $resultado_arr = $bd->consultar($sql);
+        echo $sql;
+        break;
         return $resultado_arr;
+        
+        
     }
+    
   
   
     public function getUsuario($id) 
@@ -68,7 +81,7 @@ class UsuarioPersistencia
         $sql->addFuncion("SELECT ");
         $sql->addTable("`sge_usuarios`");
         $sql->addWhere("`mail` = '".$user."'");  
-        $sql->addWhere("`pass` = '". md5($pass) ."'");  
+        $sql->addWhere("`pass` = '". md5($pass) ."'");
         return $bd->autenticarUsuario($sql);
     }
   

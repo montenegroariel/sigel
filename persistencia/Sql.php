@@ -7,7 +7,9 @@ class Sql
   private $_colFuncion = array();
   private $_colJoin = array();
   private $_colValue = array();
-  
+  private $_colCamp = array();
+
+
   public function addTable($table)
   {
     $this->_colFrom[] = $table;
@@ -43,14 +45,19 @@ class Sql
     $this->_colValue[] = $value;
   }
   
-  public function consultar()
+  public function addCamp($value)
+  {
+      $this->_colCamp[] = $value;
+  }
+
+    public function consultar()
   {
     $select = implode(',',array_unique($this->_colSelect));
     $from   = implode(',',array_unique($this->_colFrom));
     $where  = implode(' AND ',array_unique($this->_colWhere));  
-    if($where != ''){
-        $where = ' WHERE '.$where;
-    }
+        if($where != ''){
+            $where = ' WHERE '.$where;
+        }
         //echo 'SELECT '.$select.' FROM '.$from.$where;
         return 'SELECT '.$select.' FROM '.$from. $where;
     }

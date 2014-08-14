@@ -10,25 +10,28 @@ class MySQL implements ManejadorBaseDeDatosInterface
     const SERVIDOR = 'localhost';
     private $_conexion;
 
-
     public function conectar()
     {
         $this->_conexion = new mysqli(        
         self::SERVIDOR, 
-        self::USARIO, 
+        self::USUARIO, 
         self::CLAVE, 
         self::BASE);
+            if ($this->_conexion->connect_errno) {
+                printf("Falló la conexión: %s\n", $this->_conexion->connect_error);
+                exit();
+            }
     }
 
     public function desconectar()
     {
-        $this->_conexion->disconect;
+        $this->_conexion->close();
     }
     
     public function consultar(SQL $sql)
     {
         $todo = array();
-        $resultado = mysqli_query($this->_conexion, $sql->consultar);
+        $resultado = $this->_conexion->query($sql->consultar());
         //var_dump($resultado);
         while ($fila = $resultado->fetch_assoc()){
             $todo[] = $fila;
@@ -57,8 +60,9 @@ class MySQL implements ManejadorBaseDeDatosInterface
 
     public function autenticarUsuario(SQL $sql)
     {
-        $autenticar = $this->_conexion->query($sql->consultar());   
-        $resultado = $autenticar->fetch();
+//        echo $sql->consultar();
+//        break;
+        $resultado = $this->_conexion->query($sql->consultar());
         return $resultado;
     }
 

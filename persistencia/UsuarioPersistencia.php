@@ -28,10 +28,12 @@ class UsuarioPersistencia
     public function getUsuario($id) 
     { 
         $bd = new BaseDeDatos(new MySQL()); 
-        $sql = new Sql(); $sql->addTable('sge_usuarios');
+        $sql = new Sql(); $sql->addTable('sge_usuarios join sge_personas on sge_usuarios.id_persona = sge_personas.id');
         $sql->addFuncion("SELECT ");
         $sql->addWhere("id = ".$id);
+        echo $sql;
         return $bd->consultar($sql);
+        
     }
  
     public function guardarUsuario($id, $mail, $pass, $perfil, $id_persona)

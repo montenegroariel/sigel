@@ -4,8 +4,8 @@ require_once PER . DIRECTORY_SEPARATOR . 'ManejadorBaseDeDatosInterface.php';
 
 class MySQL implements ManejadorBaseDeDatosInterface
 {
-    const USUARIO = 'root';
-    const CLAVE = 'piratas2012';
+    const USUARIO = 'user';
+    const CLAVE = 'password';
     const BASE = 'sge';
     const SERVIDOR = 'localhost';
     private $_conexion;
